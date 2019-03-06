@@ -16,10 +16,11 @@ X = dataset.iloc[:, :-1].values
 Y = dataset.iloc[:, 3].values
 
 # allows us to take care of missing data
-from sklearn.preprocessing import Imputer
+from sklearn.impute import SimpleImputer
 
 # also can use median or most_frequent
-imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
+# Imputer is deprecated, use SimpleImputer
+imputer = SimpleImputer(missing_values = np.NaN, strategy = 'mean')
 
 # it goes [rows, columns]
 # its not 1:2 but 1:3 because the upper bound is excluded. To include columns index 1 and 2, up to 3
@@ -32,7 +33,7 @@ labelencoder_X = LabelEncoder()
 X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
 
 #we need to apply it to craete a column for each category, 0 or 1 for that category
-onehotencoder = OneHotEncoder(categorical_features=[0])
+onehotencoder = OneHotEncoder(categories='auto')
 X = onehotencoder.fit_transform(X).toarray()
 
 #for dependent data we can change the yes/nos to 0/1 similarly
@@ -40,7 +41,7 @@ labelencoder_y = LabelEncoder()
 Y = labelencoder_y.fit_transform(Y)
 
 
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, random_state = 42)
 
 from sklearn.preprocessing import StandardScaler
