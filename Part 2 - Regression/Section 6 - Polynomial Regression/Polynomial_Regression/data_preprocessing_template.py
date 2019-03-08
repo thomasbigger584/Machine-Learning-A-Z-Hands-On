@@ -34,7 +34,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # this will transform X into a new matrix, to all the different powers up to n
 # i.e. X, X^2, X^3...X^n
-poly_reg = PolynomialFeatures(degree = 4)
+poly_reg = PolynomialFeatures(degree = 8)
 #create the new matrix from X, by fitting x then transform
 X_poly = poly_reg.fit_transform(X)
 # notice the constant b0 is automatically added from the formula, the column of 1's as the first column
@@ -43,3 +43,26 @@ X_poly = poly_reg.fit_transform(X)
 # fit the new X_poly in instead of X
 lin_reg_2 = LinearRegression()
 lin_reg_2.fit(X_poly, y)
+
+
+# Comparing Linear and Polinomial Regression
+
+# Visualising the Linear Regression Results
+
+# plot all the observation points (the true results)
+plt.scatter(X, y, color = 'red')
+
+x_lin_pred = lin_reg.predict(X)
+# plot the prediction
+plt.plot(X, x_lin_pred, color='blue')
+plt.title('Linear Regression')
+plt.xlabel('Position Level')
+plt.ylabel('Salary')
+plt.show()
+# this is a straight line, because it is a linear regression model
+# it does not fit the curve, so we will get wrong results
+# for example position level 10 is not accurate, should be near 100000 and not around 60000
+
+
+
+
