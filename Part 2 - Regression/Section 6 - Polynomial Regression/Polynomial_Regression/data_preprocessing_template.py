@@ -70,14 +70,19 @@ plt.show()
 # We want to make this code applicable to any new matrix of features X so call the fit transform with X again
 # This generalises things and makes it more useful going forward
 
+# X was updated to X_grid for more granular stepping
+
 #set the X to go in steps of 0.1 instead of 1
 X_grid = np.arange(min(X), max(X), 0.1)
 # but this is a vector and not a matrix so reshape to number of lines and columns
-X_grid = X_grid.reshape(len(X_grid), 1)
+X_grid = X_grid.reshape((len(X_grid), 1))
 
 plt.scatter(X, y, color = 'red')
-x_lin_pred_2 = lin_reg_2.predict(poly_reg.fit_transform(X))
-plt.plot(X, x_lin_pred_2, color='blue')
+
+#predict and plot
+x_lin_pred_2 = lin_reg_2.predict(poly_reg.fit_transform(X_grid))
+plt.plot(X_grid, x_lin_pred_2, color='blue')
+
 plt.title('Polynomial Regression. Degree = 4. Step = 0.1')
 plt.xlabel('Position Level')
 plt.ylabel('Salary')
