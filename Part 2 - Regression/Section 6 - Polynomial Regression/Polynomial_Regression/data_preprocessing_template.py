@@ -34,7 +34,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # this will transform X into a new matrix, to all the different powers up to n
 # i.e. X, X^2, X^3...X^n
-poly_reg = PolynomialFeatures(degree = 8)
+poly_reg = PolynomialFeatures(degree = 4)
 #create the new matrix from X, by fitting x then transform
 X_poly = poly_reg.fit_transform(X)
 # notice the constant b0 is automatically added from the formula, the column of 1's as the first column
@@ -64,5 +64,22 @@ plt.show()
 # for example position level 10 is not accurate, should be near 100000 and not around 60000
 
 
+# Visualising the Polynomial Regression Results
 
+# Dont use the existing X_poly becaue it was already defined for an exising matrix of features X
+# We want to make this code applicable to any new matrix of features X so call the fit transform with X again
+# This generalises things and makes it more useful going forward
 
+plt.scatter(X, y, color = 'red')
+x_lin_pred_2 = lin_reg_2.predict(poly_reg.fit_transform(X))
+plt.plot(X, x_lin_pred_2, color='blue')
+plt.title('Polynomial Regression. Degree = 4')
+plt.xlabel('Position Level')
+plt.ylabel('Salary')
+plt.show()
+
+# Now we have a curve, so this is not linear (not a straight line)
+# we can see that we can get more accurate results for 
+
+# we want to do better, so we can change the degree, changing from 2, to 3 and get a better fit
+# however degree = 4 provides the best fit
