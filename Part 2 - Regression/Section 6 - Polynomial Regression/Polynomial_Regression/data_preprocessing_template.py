@@ -88,7 +88,7 @@ plt.xlabel('Position Level')
 plt.ylabel('Salary')
 plt.show()
 
-# Now we have a curve, so this is not linear (not a straight line)
+#X_gridNow we have a curve, so this is not linear (not a straight line)
 # we can see that we can get more accurate results for 
 
 # we want to do better, so we can change the degree, changing from 2, to 3 and get a better fit
@@ -96,3 +96,13 @@ plt.show()
 
 # This still has some straight lines so we would like to see it in a higher resolution
 # our position levels go from 1-10 and would prefer it in a 0.1 step
+
+
+
+# Predicting a new result using Linear Regression
+x_lin_pred = lin_reg.predict([[6.5]])
+
+# Predicting a new result using Polynomial Regression
+x_lin_pred_2 = lin_reg_2.predict(poly_reg.fit_transform([[6.5]]))
+
+# we can see the prediction is much more accurate using polynomial than linear. 300,000 compared to 158,000
