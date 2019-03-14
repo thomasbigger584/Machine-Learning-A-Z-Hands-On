@@ -27,12 +27,12 @@ y = sc_y.fit_transform(y)
 
 from sklearn.svm import SVR
 
-# C: play to regular 
+# C: t
 # KERNEL: what type of svr do you want, linear, polynomial, rbf
 # rbf most common, also default but add anyway
 
 # this SVR class does not apply feature scaling
-regressor = SVR(kernel = 'rbf')
+regressor = SVR(kernel = 'rbf', C = 50)
 regressor.fit(X, y)
 
 # Predicting a new result
@@ -57,7 +57,7 @@ X_grid = np.arange(min(X), max(X), 0.1)
 X_grid = X_grid.reshape((len(X_grid), 1))
 plt.scatter(X, y, color = 'red')
 plt.plot(X_grid, regressor.predict(X_grid), color = 'blue')
-plt.title('Truth or Bluff (SVR)')
+plt.title('SVR. C = 50')
 plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.show()
