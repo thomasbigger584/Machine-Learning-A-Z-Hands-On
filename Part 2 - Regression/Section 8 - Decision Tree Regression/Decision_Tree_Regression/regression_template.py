@@ -23,25 +23,38 @@ sc_y = StandardScaler()
 y_train = sc_y.fit_transform(y_train)"""
 
 # Fitting the Regression Model to the dataset
-# Create your regressor here
+from sklearn.tree import DecisionTreeRegressor
+# specifying random state to get the same result as course
+regressor = DecisionTreeRegressor(random_state = 0)
+regressor.fit(X, y)
 
 # Predicting a new result
 y_pred = regressor.predict(6.5)
 
 # Visualising the Regression results
-plt.scatter(X, y, color = 'red')
-plt.plot(X, regressor.predict(X), color = 'blue')
-plt.title('Truth or Bluff (Regression Model)')
-plt.xlabel('Position level')
-plt.ylabel('Salary')
-plt.show()
+# here we are in front of a new trap
+# it is spliting the independent variables into intervals and we are in 1 dimension
+# and taking the average of each interval
+# predictions are non-linear and non-continuous
+# we need to show this in higher resolution for this model
+
+#plt.scatter(X, y, color = 'red')
+#plt.plot(X, regressor.predict(X), color = 'blue')
+#plt.title('Truth or Bluff (Decision Tree Regression)')
+#plt.xlabel('Position level')
+#plt.ylabel('Salary')
+#plt.show()
+
 
 # Visualising the Regression results (for higher resolution and smoother curve)
+# here we can clearly see where the intervals are
+# each intervals average is the straight line and so classifying position 
+# levels around the values the average for each
 X_grid = np.arange(min(X), max(X), 0.1)
 X_grid = X_grid.reshape((len(X_grid), 1))
 plt.scatter(X, y, color = 'red')
 plt.plot(X_grid, regressor.predict(X_grid), color = 'blue')
-plt.title('Truth or Bluff (Regression Model)')
+plt.title('Decision Tree Regression. Step = 0.1')
 plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.show()
