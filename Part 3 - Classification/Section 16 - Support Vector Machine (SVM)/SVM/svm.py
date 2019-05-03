@@ -1,4 +1,4 @@
-# K-Nearest Neighbors (K-NN)
+# Support Vector Machine (SVM)
 
 # Importing the libraries
 import numpy as np
@@ -20,10 +20,9 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Fitting K-NN to the Training set
-from sklearn.neighbors import KNeighborsClassifier
-# we want the euclidian distance, so we need to set these parameters as such metric and p. check documentation on this
-classifier = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
+# Fitting SVM to the Training set
+from sklearn.svm import SVC
+classifier = SVC(kernel = 'linear', random_state = 0)
 classifier.fit(X_train, y_train)
 
 # Predicting the Test set results
@@ -45,7 +44,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('K-NN (Training set)')
+plt.title('SVM (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -63,7 +62,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('K-NN (Test set)')
+plt.title('SVM (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
