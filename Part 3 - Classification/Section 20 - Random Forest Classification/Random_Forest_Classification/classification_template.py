@@ -21,11 +21,7 @@ X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
 # Fitting classifier to the Training set
-from sklearn.svm import SVC
-# can try all the kernels for different results
-# linear is like logistic regression
-classifier = SVC(kernel = 'rbf', random_state=0) 
-classifier.fit(X_train, y_train)
+# Create your classifier here
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
